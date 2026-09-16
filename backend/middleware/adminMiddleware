@@ -1,0 +1,36 @@
+// ======================================================
+// ADMIN ONLY MIDDLEWARE
+// ======================================================
+
+const adminOnly = (req, res, next) => {
+  // User must be authenticated first
+  if (!req.user) {
+    return res.status(401).json({
+      message: "Authentication required.",
+    });
+  }
+
+  console.log(
+    "Checking admin access for:",
+    req.user.email
+  );
+
+  console.log(
+    "User role:",
+    req.user.role
+  );
+
+  // Check role
+  if (req.user.role !== "admin") {
+    return res.status(403).json({
+      message: "Access denied. Admin only.",
+    });
+  }
+
+  // Admin is allowed
+  next();
+};
+
+module.exports = {
+  adminOnly,
+};
