@@ -29,6 +29,8 @@ Users can:
 
 Administrators can:
 
+
+
 - Login through the admin panel
 - View system statistics
 - Add new events
